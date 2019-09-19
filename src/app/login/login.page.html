@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
+ 
+    <ion-item>
+      <ion-label  position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+ 
+    <ion-item>
+      <ion-label  position="floating" color="primary">Password</ion-label>
+      <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+ 
+    <ion-button  class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Log In</ion-button>
+ 
+    <label class="error-message">{{errorMessage}}</label>
+  </form>
+  <p class="go-to-register">
+    No account yet? <a (click)="goToRegisterPage()">Create an account.</a>
+  </p>
+ 
+    
+ 
+  <!-- PHONE AUTHENTICATION STARTS BELOW: -->
+
+   <div id="recaptcha-container"></div>
+  <ion-item> 
+      <ion-label stacked>Phone Number</ion-label>
+      <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-label><ion-button (click)="signIn(phoneNumber)" expand="full"> Sign In</ion-button></ion-label>
+  </ion-item>
+     
+<!-- login with Google html -->
+
+<div *ngIf="authService.user$ | async as user; else login">
+  {{user | json }}
+  <hr>
+  <ion-button class="button" (click)="authService.signOut()" expand="full">Sign Out</ion-button>
+</div>
+ <ng-template #login>
+  <ion-label><ion-button class="button" (click)="authService.googleSignin()" expand="full">Login with Google</ion-button></ion-label>
+ </ng-template>
+
+ <!-- <ng-template #login>
+  <ion-button class="button" (click)="doFbLogin()">Login with Facebook</ion-button>
+ </ng-template> -->
+
+ <ion-item>
+  <ion-label><ion-button class="button" (click)="doFbLogin()" expand="full">Login with Facebook</ion-button></ion-label>
+</ion-item>
+</ion-content>

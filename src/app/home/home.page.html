@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Database
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <!--  <ion-input type="text"></ion-input>-->
+ <!-- <ion-button (click)="submit()">Submit</ion-button>-->
+
+ <!-- <ion-item *ngFor="let grocery of groceryList | async">
+   {{grocery.name}}
+   {{grocery.price}} 
+  {{grocery.type}}
+   </ion-item>   -->
+
+    <!-- <ion-item (click)=click() *ngFor="let grocery of groceryList | async">
+    {{grocery.name}}
+    {{grocery.price}} 
+   {{grocery.type}}
+    </ion-item>    -->
+
+    <ion-item  (click)="click(Item)" *ngFor="let Item of itemList">
+      {{Item.name}}
+      {{Item.price}} 
+     {{Item.type}} 
+      </ion-item>  
+      <!-- <ion-button size="medium" (click)="login()">Login</ion-button>  -->
+      <!-- <ion-button size="medium" (click)="logout()">Logout</ion-button>  -->
+
+    
+   
+</ion-content>
+ 

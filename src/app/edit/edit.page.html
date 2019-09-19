@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-input  [(ngModel)]="object.name">Name</ion-input>
+  <ion-input  [(ngModel)]="object.price">Price</ion-input>
+  <ion-input [(ngModel)]="object.type">Type</ion-input>
+  <!-- {{Item.name}}
+  {{Item.price}}
+  {{Item.type}} -->
+  <ion-button size="medium" (click)="update()">Update</ion-button> 
+   <ion-button size="medium" (click)=" delete()">Delete</ion-button> 
+   <!-- <ion-button size="medium" (click)=" save()">Add Data</ion-button>  -->
+</ion-content>
